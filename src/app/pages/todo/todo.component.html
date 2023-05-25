@@ -1,0 +1,41 @@
+<div class="w-full mx-auto max-w-7xl text-2xl">
+  <div class="md:w-1/2 mx-auto">
+    <div class="h3 text-center">Todo App</div>
+
+    <form (ngSubmit)="submitForm()" class="flex flex-col">
+      <label for="textInput">Add a new item:</label>
+      <input
+        type="text"
+        id="textInput"
+        [(ngModel)]="textValue"
+        name="textValue"
+        class="border border-black h-[50px]"
+      />
+      <button type="submit" class="mt-5 px-2 py-3 bg-blue-300">Submit</button>
+    </form>
+    <div class="div mt-3 shadow min-h-[50vh]">
+      <p class="text-gray-600">All todos</p>
+      <div *ngFor="let todo of todos; index as i" class="">
+        <div class="flex justify-between p-2 mb-2">
+          <p>{{ i + 1 }} {{ todo.todo }}</p>
+          <div>
+            <button
+              [style.backgroundColor]="todo.completed ? 'green' : 'pink'"
+              [style.color]="todo.completed ? 'white' : 'black'"
+              class="w-[100px] p-2 rounded-md"
+              (click)="changeStatus(todo.todo)"
+            >
+              {{ todo.completed ? "done" : "undone" }}
+            </button>
+            <button
+              class="ml-5 w-[120px] p-2 rounded-md bg-red-500"
+              (click)="deleteItem(todo.todo)"
+            >
+              delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
